@@ -1,6 +1,7 @@
+import { WhistoricalModel } from './../../utils/models/Whistorical.model';
 import { AppState } from './../../store/index';
 import { Store } from '@ngrx/store';
-import { Utils } from './../../utils/utils';
+import { Utils, citiesCode } from './../../utils/utils';
 import { WcityModel } from './../../utils/models/Wcity.model';
 import { Component, OnInit, ChangeDetectionStrategy, Input, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -19,17 +20,31 @@ import { Observable } from 'rxjs';
 })
 export class CityComponent implements OnInit {
   private utils: Utils = new Utils();
+  private citiesCode = citiesCode;
+  public activeHistoryCity: WhistoricalModel[];
+  public activeHistoryCityID: Number;
+
   private historical$: Observable<any>;
+  private historical: WhistoricalModel[];
+
   modalRef: BsModalRef;
 
-  constructor(private modalService: BsModalService, private _store: Store<AppState>) { }
+  constructor(private modalService: BsModalService, private _store: Store<AppState>) {
+    this.historical$ = this._store.select('historical');
+   }
   @Input('city') city: WcityModel;
 
   ngOnInit() {
-    this.historical$ = this._store.select('historical');
+    this.historical$.subscribe((historicalArr: WhistoricalModel[]) => this.historical = historicalArr);
   }
 
-  openModal(template: TemplateRef<any>) {
+  private openModal(template: TemplateRef<any>, cityId: number) {
+    this.prepareactiveHistoryCity(cityId);
     this.modalRef = this.modalService.show(template);
+  }
+
+  public prepareactiveHistoryCity(cityId: Number) {
+    this.activeHistoryCity  = this.historical.filter((historicalCity: WhistoricalModel) =>  historicalCity.id === cityId);
+    this.activeHistoryCityID = cityId;
   }
 }

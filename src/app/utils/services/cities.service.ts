@@ -22,8 +22,7 @@ export class CitiesService implements OnDestroy {
    * Initializate the cities at Init the app
    */
   initApp() {
-    console.warn('tirori');
-      this.subscription = timer(0, 10000).pipe(
+      this.subscription = timer(0, 30000).pipe(
          // tslint:disable-next-line:max-line-length
          map( () => this._http.get('http://api.openweathermap.org/data/2.5/group?id=3871336,3435910,3936456,3448439&units=metric&lang=es&APPID=' + environment.weathermap.APPID))
       ).subscribe((citiesObserver: Observable<any>) => {
@@ -50,9 +49,3 @@ export class CitiesService implements OnDestroy {
   }
 }
 
-/**
- * 3871336 = santiago
- * 3435910 = Buenos Aires
- * 3936456 = Lima
- * 3448439 = Sao Paulo
- */
