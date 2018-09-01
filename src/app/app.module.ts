@@ -13,6 +13,8 @@ import { CityComponent } from './components/city/city.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './shared/template/header/header.component';
 import { FooterComponent } from './shared/template/footer/footer.component';
+import { CapitalizePipe } from './utils/pipes/capitalize.pipe';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -21,11 +23,13 @@ import { FooterComponent } from './shared/template/footer/footer.component';
     CityComponent,
     HeaderComponent,
     FooterComponent,
+    CapitalizePipe,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    ModalModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],

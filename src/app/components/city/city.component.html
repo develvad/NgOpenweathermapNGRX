@@ -1,3 +1,31 @@
-<p>
-  city works!
-</p>
+
+        <div class="card">
+            <img class="card-img-top" src="/assets/images/{{city?.id}}.jpg" alt="">
+            <div class="card-body">
+              <h4 class="card-title">{{city?.name}}</h4>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <ng-container *ngFor="let weather of city?.weather">
+                        <img src="http://openweathermap.org/img/w/{{weather?.icon}}.png" />  <span class="descriptionW"> {{ weather?.description | capitalize}} </span>
+                    </ng-container>
+                  </li>
+                  <li class="list-group-item"> {{utils.roundNum(city?.main?.temp_max)}}° Max - {{utils.roundNum(city?.main?.temp_min)}}° Min </li>
+                  <li class="list-group-item">Viento: {{city?.wind?.speed}} m/h</li>
+              </ul>
+            </div>
+            <div class="card-footer">
+              <button (click)="openModal(template)" class="btn btn-primary">Ver historico</button>
+            </div>
+        </div>
+
+        <ng-template #template>
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">Modal</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            This is a modal.
+          </div>
+        </ng-template>

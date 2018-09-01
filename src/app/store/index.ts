@@ -1,3 +1,4 @@
+import { WhistoricalModel } from './../utils/models/Whistorical.model';
 // APP Dependencies
 import { citiesReducer } from './reducers/cities.reducer';
 import { WcityModel } from './../utils/models/Wcity.model';
@@ -13,13 +14,16 @@ import {
     MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
+import { HistoricalReducer } from './reducers/historical.reducer';
 
 export interface AppState {
     cities: WcityModel[];
+    historical: WhistoricalModel[];
 }
 
 export const reducers: ActionReducerMap<AppState> = {
     cities: citiesReducer,
+    historical: HistoricalReducer
 };
 
 // Utils for NGRX
