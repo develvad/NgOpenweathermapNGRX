@@ -1,6 +1,6 @@
 # WheatherApiApi
 
-Please use ng serve in developer or master branch for see the app.
+Please use ng serve in developer or master branch for see the app. First, don't forget use npm install on root of project. 
 
 You can see all the operation of the Store (Actions) in the console thanks to ngrx-logger or through NGRX DevTools Plugin.
 
