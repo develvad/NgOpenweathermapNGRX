@@ -7,6 +7,7 @@
                   <li class="list-group-item">
                     <ng-container *ngFor="let weather of city?.weather">
                         <img src="http://openweathermap.org/img/w/{{weather?.icon}}.png" />  <span class="descriptionW"> {{ weather?.description | capitalize}} </span>
+                        <br/>
                     </ng-container>
                   </li>
                   <li class="list-group-item"> {{utils.roundNum(city?.main?.temp_max)}}° Max - {{utils.roundNum(city?.main?.temp_min)}}° Min </li>

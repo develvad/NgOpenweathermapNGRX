@@ -1,20 +1,28 @@
 import { CitiesService } from './utils/services/cities.service';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from './store';
+import { GetAllCitiesAction } from './store/actions/cities.actions';
+import { Subscription, timer, pipe, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   title = 'app';
-  constructor(private _cities: CitiesService) {
+  private subscription: Subscription;
+  constructor(private _store: Store<AppState>) {
     // Inicialize APP
-    // this._cities.getCitiesFromService();
-    // Set Interval to 30 segs the refresh of store
-    // setInterval(this._cities.getCitiesFromService, 2000);
-    this._cities.initApp();
-
+    this.subscription = timer(0, 30000)
+      .subscribe(() => {
+        this._store.dispatch(new GetAllCitiesAction());
+      });
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

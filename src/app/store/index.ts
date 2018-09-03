@@ -1,6 +1,6 @@
 import { WhistoricalModel } from './../utils/models/Whistorical.model';
 // APP Dependencies
-import { citiesReducer } from './reducers/cities.reducer';
+import { citiesReducer, CitiesState } from './reducers/cities.reducer';
 import { WcityModel } from './../utils/models/Wcity.model';
 // Utils
 import { storeLogger } from 'ngrx-store-logger';
@@ -17,7 +17,7 @@ import { environment } from '../../environments/environment';
 import { HistoricalReducer } from './reducers/historical.reducer';
 
 export interface AppState {
-    cities: WcityModel[];
+    cities: CitiesState;
     historical: WhistoricalModel[];
 }
 

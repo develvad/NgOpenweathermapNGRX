@@ -5,13 +5,11 @@
 
     <div class="row text-center">
   
-      <div class="col-lg-3 col-md-6 mb-4" *ngFor="let city of (cities$ | async)">
+      <div class="col-lg-3 col-md-6 mb-4" *ngFor="let city of (cities$ | async).payload">
           <wta-city [city]="city" ></wta-city>
       </div>
-  
-  
-    </div>
-    <!-- /.row -->
-  
+
+    </div>  
+
   </div>
   
