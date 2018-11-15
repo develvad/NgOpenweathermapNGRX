@@ -1,4 +1,4 @@
-# WheatherApi
+# WeatherApi
 
 Please use ng serve in master branch for see the app. First, don't forget use npm install on root of project. 
 
